@@ -40,13 +40,22 @@ namespace CustomCollection
             List.Add(item);
         }
 
+        //The Method we needed...
         public List<T> AddMember(T item)
         {
             if (item is null)
                 throw new ArgumentNullException(nameof(item));
 
             List.Add(item);
-            List.Sort();
+            try
+            {
+                List.Sort();
+            }
+            catch (InvalidOperationException)
+            {
+                throw;
+            }
+            
 
             return List;
         }
