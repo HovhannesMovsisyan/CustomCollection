@@ -70,11 +70,5 @@ namespace CustomCollection
         {
             _list.CopyTo(array, arrayIndex);
         }
-
-        public void Sort()
-        {
-            _list.Sort();
-        }
-
     }
 }

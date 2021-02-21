@@ -21,7 +21,7 @@ namespace CustomCollection
             Person p = new Person("hgfhjsdj", 2);
             Person p1 = new Person("agfhjsdj", 45);
             Person p2 = new Person("kfhjsdj", 3);
-            List<Person> person = new List<Person>();
+            MyCollection<Person> person = new MyCollection<Person>();
             try
             {
                 //my.Add(dt);
@@ -33,13 +33,13 @@ namespace CustomCollection
                 person.Add(p2);
                 Console.WriteLine(my.Count);
                 Console.WriteLine(my[0]);
-                //my.Add(8);
-                //my.Add(66);
-                //my.Add(4);
-                //my.Add(2);
-                //my.Add(5);
-                //my.Add(7);
-                //my.Add(21236);
+                my.Add(8);
+                my.Add(66);
+                my.Add(4);
+                my.Add(2);
+                my.Add(5);
+                my.Add(7);
+                my.Add(21236);
                 Console.WriteLine(my.Count);
                 Console.WriteLine(my[0]);
             }
