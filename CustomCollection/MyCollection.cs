@@ -7,14 +7,11 @@ using System.Text;
 
 namespace CustomCollection
 {
-    public class MyCollection<T> : ICollection<T>
+    public class OrderedCollection<T> : ICollection<T> where T : IComparable
     {
-        public MyCollection()
-        {
-            _list = new List<T>();
-        }
+        public OrderedCollection() => List = new List<T>();
 
-        protected List<T> _list { get; }
+        protected List<T> List { get; }
 
         public T this[int index]
         {
@@ -22,64 +19,54 @@ namespace CustomCollection
             {
                 try
                 {
-                    return _list[index];
+                    return List[index];
                 }
-                catch (ArgumentOutOfRangeException)
+                catch (IndexOutOfRangeException)
                 {
                     throw;
                 }
-                
             }
         }
 
-        public int Count => _list.Count;
+        public int Count => List.Count;
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
         public void Add(T item)
         {
-            if (item != null)
-            {
-                _list.Add(item);
-            }
+            if (item is null)
+                return;
+
+            List.Add(item);
         }
 
         public List<T> AddMember(T item)
         {
-            if (item != null)
-            {
-                _list.Add(item);
-            }
-            var newList = _list.Concat(new[] {item}).ToList();
-            _list.Sort();
-            return newList;
+            if (item is null)
+                throw new ArgumentNullException(nameof(item));
+
+            List.Add(item);
+            List.Sort();
+
+            return List;
         }
 
-        public void Clear()
-        {
-            _list.Clear();
-        }
+        public void Clear() => List.Clear();
 
-        public bool Contains(T item) => _list.Contains(item);
+        public bool Contains(T item) => List.Contains(item);
 
-        public IEnumerator<T> GetEnumerator() => new MyCollectionEnumerator<T>(this);
+        public IEnumerator<T> GetEnumerator() => List.GetEnumerator();
 
         public bool Remove(T item)
         {
-            if (item != null && Contains(item))
-            {
-                _list.Remove(item);
-                return true;
-            }
-            return false;
+            if (item is null && !Contains(item))
+                return false;
+
+            return List.Remove(item);
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => new MyCollectionEnumerator<T>(this);
+        IEnumerator IEnumerable.GetEnumerator() => List.GetEnumerator();
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            _list.CopyTo(array, arrayIndex);
-        }
-        
+        public void CopyTo(T[] array, int arrayIndex) => List.CopyTo(array, arrayIndex);
     }
 }
