@@ -42,7 +42,17 @@ namespace CustomCollection
             {
                 _list.Add(item);
             }
+        }
+
+        public List<T> AddMember(T item)
+        {
+            if (item != null)
+            {
+                _list.Add(item);
+            }
+            var newList = _list.Concat(new[] {item}).ToList();
             _list.Sort();
+            return newList;
         }
 
         public void Clear()
@@ -70,5 +80,6 @@ namespace CustomCollection
         {
             _list.CopyTo(array, arrayIndex);
         }
+        
     }
 }
