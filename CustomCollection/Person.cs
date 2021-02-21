@@ -4,19 +4,19 @@ namespace CustomCollection
 {
     public class Person : IComparable
     {
-        public string name;
-        public int age;
+        public string Name { get; }
+        public int Age { get; }
 
         public Person(string name, int age)
         {
-            this.name = name;
-            this.age = age;
+            Name = name;
+            Age = age;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object otherObject)
         {
-            if (obj is Person otherPerson)
-                return age - otherPerson.age;
+            if (otherObject is Person otherPerson)
+                return Age - otherPerson.Age;
 
             return -1;
         }

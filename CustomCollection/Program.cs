@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CustomCollection
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            OrderedCollection<DateTime> orderedDateCollection = new OrderedCollection<DateTime>();
-
             DateTime date1 = Convert.ToDateTime("29/11/2017");
             DateTime date3 = Convert.ToDateTime("21/03/2015");
             DateTime date4 = Convert.ToDateTime("13/01/2015");
             DateTime date2 = Convert.ToDateTime("21/11/2017");
             DateTime date5 = Convert.ToDateTime("13/01/2016");
             DateTime date6 = Convert.ToDateTime("21/01/2015");
-
-            OrderedCollection<int> orderedIntegers = new OrderedCollection<int>();
-            Person p = new Person("Tom", 2);
-            Person p1 = new Person("Frank", 45);
-            Person p2 = new Person("Artavazd", 3);
+            OrderedCollection<DateTime> orderedDateCollection = new OrderedCollection<DateTime>();
+            
+            Person person1 = new Person("Tom", 2);
+            Person person2 = new Person("Frank", 45);
+            Person person3 = new Person("Artavazd", 3);
             OrderedCollection<Person> people = new OrderedCollection<Person>();
+            
+            OrderedCollection<int> orderedIntegers = new OrderedCollection<int>();
+            
             try
             {
                 orderedDateCollection.AddMember(date1);
@@ -30,9 +30,9 @@ namespace CustomCollection
                 orderedDateCollection.AddMember(date5);
                 orderedDateCollection.AddMember(date6);
 
-                people.AddMember(p);
-                people.AddMember(p1);
-                people.AddMember(p2);
+                people.AddMember(person1);
+                people.AddMember(person2);
+                people.AddMember(person3);
 
                 orderedIntegers.AddMember(845);
                 orderedIntegers.AddMember(8);
@@ -49,7 +49,7 @@ namespace CustomCollection
                 Console.WriteLine("__________________________");
 
                 foreach (var item in people)
-                    Console.WriteLine($"{item.name}: {item.age}");
+                    Console.WriteLine($"{item.Name}: {item.Age}");
 
                 Console.WriteLine("__________________________");
 
@@ -58,7 +58,7 @@ namespace CustomCollection
 
                 Console.ReadKey();
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (IndexOutOfRangeException ex)
             {
                 Console.WriteLine(ex.Message);
             }
